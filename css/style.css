@@ -20,11 +20,13 @@
    }
 
 html {
-    font-size: 62.5%;
+    /* font-size: 62.5%; */
+    font-size: 50%;
 }
   
 body {
     color: var(--white-color);
+    overflow-x: hidden;
 }
 
 header {
@@ -32,6 +34,7 @@ header {
     top: 0;
     left: 0;
     width: 100%;
+    height: 10%;
     padding: 2rem 9%;
     /* background: var(--bg-color); */
     background: var(--gradient-bg-color);
@@ -156,6 +159,7 @@ section.active {
 .home {
     display: flex;
     align-items: center;
+    justify-content: space-around;
     gap: 5rem;
 }
 
@@ -308,6 +312,9 @@ section.active {
 }
 
 /* DASHBOARD */
+.dashboard {
+    padding-top: 15rem;
+}
 
 .dashboard-container {
     display: grid;
@@ -364,6 +371,7 @@ section.active {
     gap: 2rem;
     height: 45rem;
     overflow: auto;
+    padding-top: 2.5rem;
 }
 
 .dashboard-list::-webkit-scrollbar {
@@ -379,11 +387,11 @@ section.active {
     background: var(--main-color);
 }
 
-.dashboard-list .resume-item {
+.dashboard-list .dashboard-item {
     background: var(--second-bg-color);
     border-radius: .8rem;
     padding: 3rem 2.5rem;
-    height: calc((45rem - 2rem) / 2);
+    height: calc((35rem - 2rem) / 2);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -415,7 +423,7 @@ section.active {
 }
 
 .dashboard-detail.skills .dashboard-list {
-    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); */
     height: auto;
     overflow: visible;
 }
@@ -712,6 +720,33 @@ section.active {
     cursor: pointer;
 }
 
+
+
+/* IFRAME RESPONSIVENESS AND ZOOMING */
+.iframe-container {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* Aspect ratio of 16:9 */
+    overflow: hidden;
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    transform-origin: top left;
+    zoom: 80%;
+}
+
+.responsive-iframe {
+    transform-origin: 0 0;
+}
+
+
+
 /* breakpoints */
 @media screen and (max-width: 1200px) {
     html {
@@ -766,20 +801,46 @@ section.active {
         flex-direction: column-reverse;
         justify-content: center;
         gap: 2rem;
+        margin-top: 2.5rem;
     }
 
     .home-img .img-box {
         width: 35rem;
         height: 35rem;
     }
+    
+    .home-detail {
+        display: flex;
+        flex-direction: column; /* Stacks the content vertically */
+        justify-content: center; /* Centers content vertically */
+        align-items: center; /* Centers content horizontally */
+        text-align: center; /* Ensures text alignment is centered */
+        height: 100vh; /* Optional: Adjust based on the container size */
+        margin: 0 auto; /* Centers the container horizontally if required */
+    }
 
-    .resume-container,
+    .home-detail h1 {
+        font-size: clamp(3.5rem, 10vw, 4.5rem);
+    }
+
+    .iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    transform-origin: top left;
+    zoom: 50%;
+}
+
+    .dashboard-container,
     .portfolio-container,
     .contact-container {
         grid-template-columns: 1fr;
     }
 
-    .resume-container {
+    .dashboard-container {
         gap: 3rem;
     }
 
@@ -805,16 +866,16 @@ section.active {
 
 @media screen and (max-width: 450px) {
     html {
-        font-size: 50%;
+        font-size: 40%;
     }
 }
 
 @media screen and (max-width: 400px) {
     .home-detail,
-    .resume-box h2,
-    .resume-box .heading,
-    .resume-box .desc,
-    .resume-detail.about .resume-item {
+    .dashboard-box h2,
+    .dashboard-box .heading,
+    .dashboard-box .desc,
+    .dashboard-detail.about .resume-item {
         text-align: center;
     }
 
@@ -828,11 +889,13 @@ section.active {
     }
 
     .contact-box form {
-        padding: 2.5rem 3rem 3.5rem;
+        padding: 1.5rem 3rem 3.5rem;
     }
 
     .contact-box h2 {
         font-size: 3.5rem;
     }
 }
+
+
 
